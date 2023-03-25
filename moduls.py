@@ -36,40 +36,43 @@ class TranceAncker():
 
             
         return txt_list
-    
+        
     def trans_anker_list(self, list_html):
-    
-    
-        soup = BeautifulSoup(list_html, 'html.parser')
         
-        lists = soup.find_all('li')
-        txt_list = []
-        h3_list = []
-        for lis in lists:
-            txt = self.translate_ja(lis.text)
+        
+            soup = BeautifulSoup(list_html, 'html.parser')
             
-            #リスト作成
-            li = '<li></li>'
-            soup_li = BeautifulSoup(li, 'html.parser')
-            tag = soup.new_tag('a', href='#'+txt)
-            tag.string = lis.string
-            soup_li.li.append(tag)
-            txt_list.append(soup_li)
-            
-            #h3作成
-            h3 = '<h3></h3>'
-            soup_h3 = BeautifulSoup(h3, 'html.parser')
-            tag_h3 = soup.new_tag('a', id=txt)
-            
-            soup_h3.h3.string= lis.string
-            soup_h3.h3.append(tag_h3)
-            
-            h3_list.append(soup_h3)
+            lists = soup.find_all('li')
+            txt_list = []
+            h3_list = []
+            for lis in lists:
+                txt = self.translate_ja(lis.text)
+                
+                #リスト作成
+                li = '<li></li>'
+                soup_li = BeautifulSoup(li, 'html.parser')
+                tag = soup.new_tag('a', href='#'+txt)
+                tag.string = lis.string
+                soup_li.li.append(tag)
+                txt_list.append(soup_li)
+                
+                #h3作成
+                h3 = ['<h3>','</h3>']
+                soup_h3 = BeautifulSoup(h3, 'html.parser')
+                tag_h3 = soup.new_tag('a', id=txt)
+                tag_h3.string = lis.string
+                tag_h3 = str(tag_h3)
+                h3.insert(1,tag_h3)
+                
+                h3 = ''.join(h3)
+                soup_h3 = BeautifulSoup(h3, 'html.parser')
+                
+                h3_list.append(soup_h3)
 
-        txt_list = "".join(map(str, txt_list))
-        
-            
-        return txt_list,h3_list
+            txt_list = "".join(map(str, txt_list))
+            h3_list = "".join(map(str, h3_list))
+                
+            return txt_list,h3_list
     
 
 def opt_table(html):
