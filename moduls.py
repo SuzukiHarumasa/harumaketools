@@ -58,7 +58,6 @@ class TranceAncker():
                 
                 #h3作成
                 h3 = ['<h3>','</h3>']
-                soup_h3 = BeautifulSoup(h3, 'html.parser')
                 tag_h3 = soup.new_tag('a', id=txt)
                 tag_h3.string = lis.string
                 tag_h3 = str(tag_h3)
