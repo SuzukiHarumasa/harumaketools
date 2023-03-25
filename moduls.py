@@ -69,7 +69,7 @@ class TranceAncker():
                 h3_list.append(soup_h3)
 
             txt_list = "".join(map(str, txt_list))
-            h3_list = "".join(map(str, h3_list))
+            # h3_list = "".join(map(str, h3_list))
                 
             return txt_list,h3_list
     
